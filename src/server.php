@@ -1,6 +1,5 @@
 <?php
 
-error_log('testlogServer1');
 // turn off WSDL caching
 ini_set("soap.wsdl_cache_enabled","0");
 
@@ -41,8 +40,6 @@ $server=new SoapServer("test.wsdl",[
 
 // register available functions
 $server->addFunction('bookYear');
-
-error_log('testlogServer2');
 
 // start handling requests
 $server->handle();
