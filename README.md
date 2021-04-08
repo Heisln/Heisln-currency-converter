@@ -35,18 +35,18 @@ Operations:
 ## Example Request
 ```bash
 <soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:cur="CurrencyConverter" >
-   <soapenv:Header/>
-   <soapenv:Body>
-      <cur:convertCurrencies>
-         <sourceCurrency>USD</sourceCurrency>
-         <targetCurrency>JPY</targetCurrency>
-         <values>
-			<value>1</value>
-			<value>4</value>
-			<value>3</value>
-         </values>
-      </cur:convertCurrencies>
-   </soapenv:Body>
+  <soapenv:Header/>
+  <soapenv:Body>
+    <cur:convertCurrencies>
+      <sourceCurrency>USD</sourceCurrency>
+      <targetCurrency>JPY</targetCurrency>
+      <values>
+        <value>1</value>
+        <value>4</value>
+        <value>3</value>
+      </values>
+    </cur:convertCurrencies>
+  </soapenv:Body>
 </soapenv:Envelope>
 ```
 
