@@ -51,7 +51,7 @@
     <wsdl:binding name="CurrencyConverter" type="tns:CurrencyConverter">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="convertCurrency">
-            <soap:operation soapAction="http://localhost:8080/currency-converter.php"/>
+            <soap:operation soapAction="http://localhost:9000/currency-converter.php"/>
             <wsdl:input>
                 <soap:body use="literal" namespace="CurrencyConverter"/>
             </wsdl:input>
@@ -60,7 +60,7 @@
             </wsdl:output>
         </wsdl:operation>
         <wsdl:operation name="convertCurrencies">
-            <soap:operation soapAction="http://localhost:8080/currency-converter.php"/>
+            <soap:operation soapAction="http://localhost:9000/currency-converter.php"/>
             <wsdl:input>
                 <soap:body use="literal" namespace="CurrencyConverter"/>
             </wsdl:input>
@@ -72,7 +72,7 @@
 
     <wsdl:service name="CurrencyConverter">
         <wsdl:port binding="tns:CurrencyConverter" name="CurrencyConverter">
-            <soap:address location="http://localhost:8080/currency-converter.php"/>
+            <soap:address location="http://localhost:9000/currency-converter.php"/>
         </wsdl:port>
     </wsdl:service>
 

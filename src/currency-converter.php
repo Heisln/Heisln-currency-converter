@@ -1,8 +1,8 @@
 <?php
 
-require_once('authentication.php');
-require_once('utils.php');
-require_once('validations.php');
+require_once('php/authentication.php');
+require_once('php/utils.php');
+require_once('php/validations.php');
 
 // via Basic Authentication
 authenticate();
@@ -35,7 +35,7 @@ function convertCurrencies($sourceCurrency, $targetCurrency, $values)
 }
 
 // initialize SOAP Server
-$server=new SoapServer("currency-converter.wsdl", []);
+$server=new SoapServer("wsdl/currency-converter.wsdl", []);
 
 // register available functions
 $server->addFunction('convertCurrency');
