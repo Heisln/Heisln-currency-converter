@@ -35,7 +35,7 @@ function convertCurrencies($sourceCurrency, $targetCurrency, $values)
 }
 
 // initialize SOAP Server
-$server=new SoapServer("test.wsdl", []);
+$server=new SoapServer("currency-converter.wsdl", []);
 
 // register available functions
 $server->addFunction('convertCurrency');
