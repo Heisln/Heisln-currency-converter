@@ -6,9 +6,9 @@ function generateCurrencyMap() {
 
 	$currencyMap = array("EUR" => "1");
 
-	foreach ($xml->Cube->Cube->children() as $currencies) {
-		$currency = $currencies->attributes()->currency->__toString();
-		$rate = $currencies->attributes()->rate->__toString();
+	foreach ($xml->Cube->Cube->children() as $cubes) {
+		$currency = $cubes->attributes()->currency->__toString();
+		$rate = $cubes->attributes()->rate->__toString();
 		if(isset($currency) && isset($rate)) {
 			$currencyMap[$currency] = $rate;
 		}
