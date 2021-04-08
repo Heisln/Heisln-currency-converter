@@ -23,7 +23,7 @@ docker-compose up --build -d
 
 ## Provided SOAP Operations
 
-Endpoint: [http://127.0.0.1:9000/](http://127.0.0.1:9000/)
+Endpoint: [http://127.0.0.1:9000/currency-converter.php](http://127.0.0.1:9000/currency-converter.php)
 
 Operations:
 
