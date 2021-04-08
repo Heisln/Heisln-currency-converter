@@ -10,11 +10,7 @@ authenticate();
 // turn off WSDL caching
 ini_set("soap.wsdl_cache_enabled","0");
 
-/**
- * Determines published year of the book by name.
- * @param Book $book book instance with name set.
- * @return int published year of the book or 0 if not found.
- */
+// soap endpoint to convert a single value
 function convertCurrency($sourceCurrency, $targetCurrency, $value)
 {
 	$currencyMap = generateCurrencyMap();
@@ -24,6 +20,7 @@ function convertCurrency($sourceCurrency, $targetCurrency, $value)
 	return calculateTargetCurrency($sourceCurrency, $targetCurrency, $value, $currencyMap);
 }
 
+// soap endpoint to convert an array of values
 function convertCurrencies($sourceCurrency, $targetCurrency, $values)
 {
 	$currencyMap = generateCurrencyMap();
@@ -41,5 +38,5 @@ $server=new SoapServer("wsdl/currency-converter.wsdl", []);
 $server->addFunction('convertCurrency');
 $server->addFunction('convertCurrencies');
 
-// start handling requests
+// handling request
 $server->handle();
