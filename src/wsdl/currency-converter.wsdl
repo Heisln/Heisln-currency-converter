@@ -7,9 +7,10 @@
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
                   xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
                   xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
-
-    <xsd:documentation></xsd:documentation>
-
+    
+    <!--  
+        Provides information about any complex data types used in the WSDL document.
+    -->
     <wsdl:types>
         <xsd:complexType name="decimalArray">
             <xsd:complexContent>
@@ -20,6 +21,9 @@
         </xsd:complexType>
     </wsdl:types>
 
+    <!--
+        An abstract definition of the data being communicated.
+    -->
     <wsdl:message name="convertCurrencyRequest">
         <wsdl:part name="sourceCurrency" type="xsd:string"></wsdl:part>
         <wsdl:part name="targetCurrency" type="xsd:string"></wsdl:part>
@@ -37,6 +41,9 @@
         <wsdl:part name="values" type="tns:decimalArray"></wsdl:part>
     </wsdl:message>
 
+    <!--
+        An abstract set of operations supported by one or more endpoints.
+    -->
     <wsdl:portType name="CurrencyConverter">
         <wsdl:operation name="convertCurrency">
             <wsdl:input message="tns:convertCurrencyRequest"/>
@@ -48,6 +55,9 @@
         </wsdl:operation>
     </wsdl:portType>
 
+    <!--
+        Describes how the operation is invoked by specifying concrete protocol and data format specifications for the operations and messages.
+    -->
     <wsdl:binding name="CurrencyConverter" type="tns:CurrencyConverter">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="convertCurrency">
@@ -70,6 +80,9 @@
         </wsdl:operation>
     </wsdl:binding>
 
+    <!--
+        Specifies the port address(es) of the binding. The service is a collection of network endpoints or ports.
+    -->
     <wsdl:service name="CurrencyConverter">
         <wsdl:port binding="tns:CurrencyConverter" name="CurrencyConverter">
             <soap:address location="http://localhost:9000/currency-converter.php"/>
