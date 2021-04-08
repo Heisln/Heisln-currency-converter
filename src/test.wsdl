@@ -5,32 +5,36 @@
                   xmlns:tns="CurrencyConverter"
                   xmlns:xsd="http://www.w3.org/2001/XMLSchema"
                   xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
-                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/">
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
 
     <xsd:documentation></xsd:documentation>
 
     <wsdl:types>
-        <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema" targetNamespace="CurrencyConverter">
-            <xsd:simpleType name="currency">
-                <xsd:restriction base="xsd:string">
-                    <xsd:enumeration value="EUR"/>
-                    <xsd:enumeration value="USD"/>
-                    <xsd:enumeration value="JPY"/>
+        <xsd:complexType name="decimalArray">
+            <xsd:complexContent>
+                <xsd:restriction base="soapenc:Array">
+                    <xsd:attribute ref="soapenc:arrayType" wsdl:arrayType="xsd:decimal[]"/>
                 </xsd:restriction>
-            </xsd:simpleType>
-        </xsd:schema>
+            </xsd:complexContent>
+        </xsd:complexType>
     </wsdl:types>
 
     <wsdl:message name="convertCurrencyRequest">
-        <wsdl:part name="sourceCurrency" type="tns:currency"></wsdl:part>
-        <wsdl:part name="targetCurrency" type="tns:currency"></wsdl:part>
+        <wsdl:part name="sourceCurrency" type="xsd:string"></wsdl:part>
+        <wsdl:part name="targetCurrency" type="xsd:string"></wsdl:part>
         <wsdl:part name="value" type="xsd:decimal"></wsdl:part>
     </wsdl:message>
     <wsdl:message name="convertCurrencyResponse">
         <wsdl:part name="value" type="xsd:decimal"></wsdl:part>
     </wsdl:message>
-    <wsdl:message name="credentials">
-        <wsdl:part name="parameters" type="xsd:decimal"></wsdl:part>
+    <wsdl:message name="convertCurrenciesRequest">
+        <wsdl:part name="sourceCurrency" type="xsd:string"></wsdl:part>
+        <wsdl:part name="targetCurrency" type="xsd:string"></wsdl:part>
+        <wsdl:part name="values" type="tns:decimalArray"></wsdl:part>
+    </wsdl:message>
+    <wsdl:message name="convertCurrenciesResponse">
+        <wsdl:part name="values" type="tns:decimalArray"></wsdl:part>
     </wsdl:message>
 
     <wsdl:portType name="CurrencyConverter">
@@ -38,11 +42,24 @@
             <wsdl:input message="tns:convertCurrencyRequest"/>
             <wsdl:output message="tns:convertCurrencyResponse"/>
         </wsdl:operation>
+        <wsdl:operation name="convertCurrencies">
+            <wsdl:input message="tns:convertCurrenciesRequest"/>
+            <wsdl:output message="tns:convertCurrenciesResponse"/>
+        </wsdl:operation>
     </wsdl:portType>
 
     <wsdl:binding name="CurrencyConverter" type="tns:CurrencyConverter">
         <soap:binding style="rpc" transport="http://schemas.xmlsoap.org/soap/http"/>
         <wsdl:operation name="convertCurrency">
+            <soap:operation soapAction="http://localhost:8080/server.php"/>
+            <wsdl:input>
+                <soap:body use="literal" namespace="CurrencyConverter"/>
+            </wsdl:input>
+            <wsdl:output>
+                <soap:body use="literal" namespace="CurrencyConverter"/>
+            </wsdl:output>
+        </wsdl:operation>
+        <wsdl:operation name="convertCurrencies">
             <soap:operation soapAction="http://localhost:8080/server.php"/>
             <wsdl:input>
                 <soap:body use="literal" namespace="CurrencyConverter"/>

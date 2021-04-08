@@ -70,11 +70,49 @@ function convertCurrency($sourceCurrency, $targetCurrency, $value)
 	return $valueInTargetCurrency; 
 }
 
+function convertCurrencies($sourceCurrency, $targetCurrency, $values)
+{
+	$url = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
+	$xml = new SimpleXMLElement($url, null, true);
+
+	$currencyMap = array("EUR" => "1");
+
+	foreach ($xml->Cube->Cube->children() as $currencies) {
+		$currency = $currencies->attributes()->currency->__toString();
+		$rate = $currencies->attributes()->rate->__toString();
+		if(isset($currency) && isset($rate)) {
+			$currencyMap[$currency] = $rate;
+		}
+	}
+
+	if(!array_key_exists($sourceCurrency, $currencyMap)) {
+		throw new SoapFault('SOAP-ENV:Client', 'Given sourceCurrency is not supported');
+	}
+	if(!array_key_exists($targetCurrency, $currencyMap)) {
+		throw new SoapFault('SOAP-ENV:Client', 'Given targetCurrency is not supported');
+	}
+	
+	$valuesAsArray = json_decode(json_encode($values), true);
+
+	if(!is_array(json_decode(json_encode($values), true))) {
+		throw new SoapFault('SOAP-ENV:Client', 'Given values are not an array');
+	}
+
+	$valuesInTargetCurrencies = array();
+
+	foreach (current($valuesAsArray) as $value) {
+		array_push($valuesInTargetCurrencies, convertCurrency($sourceCurrency, $targetCurrency, $value));
+	}
+
+	return $valuesInTargetCurrencies; 
+}
+
 // initialize SOAP Server
 $server=new SoapServer("test.wsdl", []);
 
 // register available functions
 $server->addFunction('convertCurrency');
+$server->addFunction('convertCurrencies');
 
 // start handling requests
 $server->handle();
