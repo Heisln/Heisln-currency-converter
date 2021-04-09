@@ -1,10 +1,10 @@
 <?php
 
 function generateCurrencyMap() {
-    $url = "http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml";
+    $url = 'http://www.ecb.europa.eu/stats/eurofxref/eurofxref-daily.xml';
 	$xml = new SimpleXMLElement($url, null, true);
 
-	$currencyMap = array("EUR" => "1");
+	$currencyMap = array('EUR' => '1');
 
 	foreach ($xml->Cube->Cube->children() as $cubes) {
 		$currency = $cubes->attributes()->currency->__toString();

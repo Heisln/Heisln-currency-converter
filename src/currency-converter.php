@@ -8,9 +8,9 @@ require_once('php/validations.php');
 authenticate();
 
 // turn off WSDL caching
-ini_set("soap.wsdl_cache_enabled","0");
+ini_set('soap.wsdl_cache_enabled','0');
 
-// soap endpoint to convert a single value
+// endpoint to convert a single value
 function convertCurrency($sourceCurrency, $targetCurrency, $value)
 {
 	$currencyMap = generateCurrencyMap();
@@ -20,7 +20,7 @@ function convertCurrency($sourceCurrency, $targetCurrency, $value)
 	return calculateTargetCurrency($sourceCurrency, $targetCurrency, $value, $currencyMap);
 }
 
-// soap endpoint to convert an array of values
+// endpoint to convert an array of values
 function convertCurrencies($sourceCurrency, $targetCurrency, $values)
 {
 	$currencyMap = generateCurrencyMap();
@@ -32,7 +32,7 @@ function convertCurrencies($sourceCurrency, $targetCurrency, $values)
 }
 
 // initialize SOAP Server
-$server = new SoapServer("wsdl/currency-converter.wsdl");
+$server = new SoapServer('wsdl/currency-converter.wsdl');
 
 // register available functions
 $server->addFunction('convertCurrency');

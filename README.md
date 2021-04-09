@@ -8,7 +8,7 @@ Soap webservice for converting currencies
 
 ## Authentication
 
-For every request authentication with basic authentication is required.
+For every request authentication with Basic Authentication is required.
 
 ```bash
 Username:   heisl

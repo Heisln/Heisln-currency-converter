@@ -12,6 +12,6 @@ function authenticate() {
     if (!$authenticated) {
         header('WWW-Authenticate: Basic realm="CurrencyConverter"');
         header('HTTP/1.0 401 Unauthorized');
-        throw new Exception("Invalid username or password");
+        throw new Exception('Invalid username or password');
     }
 }
