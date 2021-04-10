@@ -1,5 +1,5 @@
 ![dockerhub](https://github.com/Heisln/Heisln-currency-converter/actions/workflows/container.yml/badge.svg)
-# Heisl-currency-converter
+# Heisln-currency-converter
 
 Soap webservice for converting currencies
 
