@@ -9,3 +9,9 @@ services:
       - 9000:80
     image: 'currency-converter'
     container_name: 'currency-converter'
+    networks:
+      - heisln-net
+
+networks:
+  heisln-net:
+    external: true
