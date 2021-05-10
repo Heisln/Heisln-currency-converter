@@ -1,0 +1,17 @@
+version: '3.1'
+
+services:
+  currency-converter:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 9000:80
+    image: 'currency-converter'
+    container_name: 'currency-converter'
+    networks:
+      - heisln-net
+
+networks:
+  heisln-net:
+    external: true
