@@ -7,8 +7,8 @@ services:
       dockerfile: Dockerfile
     ports:
       - 9000:80
-    image: 'currency-converter'
-    container_name: 'currency-converter'
+    image: 'heisln-currency-converter'
+    container_name: 'heisln-currency-converter'
     networks:
       - heisln-net
 
